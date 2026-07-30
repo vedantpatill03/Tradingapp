@@ -189,6 +189,11 @@ app.get("/allHoldings", async (req, res) => {
   res.json(allHoldings);
 });
 
+app.get("/allOrders", async (req, res) => {
+  let allOrders = await OrdersModel.find({});
+  res.json(allOrders);
+});
+
 app.get("/allPositions", async (req, res) => {
   let allPositions = await PositionsModel.find({});
   res.json(allPositions);
