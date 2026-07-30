@@ -11,16 +11,29 @@ const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
-  const handleBuyClick = () => {
-    axios.post("https://tradingapp-backend-e0jo.onrender.com/newOrder", {
-      name: uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "BUY",
-    });
+  const handleBuyClick = async () => {
+  alert("Buy button clicked");
 
-    GeneralContext.closeBuyWindow();
-  };
+  try {
+    const res = await axios.post(
+      "https://tradingapp-backend-e0jo.onrender.com/newOrder",
+      {
+        name: uid,
+        qty: stockQuantity,
+        price: stockPrice,
+        mode: "BUY",
+      }
+    );
+
+    alert("Order sent successfully");
+    console.log(res.data);
+  } catch (err) {
+    alert("Error sending order");
+    console.error(err);
+  }
+
+  GeneralContext.closeBuyWindow();
+};
 
   const handleCancelClick = () => {
     GeneralContext.closeBuyWindow();
