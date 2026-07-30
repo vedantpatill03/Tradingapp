@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 
 import axios from "axios";
@@ -10,6 +10,8 @@ import "./BuyActionWindow.css";
 const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
+
+  const generalContext = useContext(GeneralContext);
 
   const handleBuyClick = async () => {
   alert("Buy button clicked");
@@ -32,11 +34,11 @@ const BuyActionWindow = ({ uid }) => {
     console.error(err);
   }
 
-  GeneralContext.closeBuyWindow();
+  generalContext.closeBuyWindow();
 };
 
   const handleCancelClick = () => {
-    GeneralContext.closeBuyWindow();
+   generalContext.closeBuyWindow();
   };
 
   return (
